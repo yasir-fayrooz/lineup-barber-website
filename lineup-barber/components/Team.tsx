@@ -1,6 +1,5 @@
 "use client";
-import { Scissors } from "lucide-react";
-import { BARBERS } from "@/app/data";
+import { BARBERS } from "@/data";
 import Image from "next/image";
 
 const GOLD = "#D4AF37";

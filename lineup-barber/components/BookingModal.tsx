@@ -9,6 +9,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { useBookingStore } from "@/stores/booking-store";
+import { CALENDAR_A_HREF, CALENDAR_SCRIPT_SRC } from "@/data";
 
 function ZcalWidget() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,7 +21,7 @@ function ZcalWidget() {
 
     // Remove any existing zcal script so it re-executes fresh
     const existing = document.querySelector(
-      'script[src="https://static.zcal.co/embed/v1/embed.js"]',
+      `script[src="${CALENDAR_SCRIPT_SRC}"]`,
     );
     if (existing) existing.remove();
 
@@ -30,14 +31,14 @@ function ZcalWidget() {
     if (win.zcal) delete win.zcal;
 
     const script = document.createElement("script");
-    script.src = "https://static.zcal.co/embed/v1/embed.js";
+    script.src = CALENDAR_SCRIPT_SRC;
     script.async = true;
 
     // Only after script is fully loaded do we inject the anchor
     // so zcal's DOM scan runs against a ready element
     script.onload = () => {
       const anchor = document.createElement("a");
-      anchor.href = "https://zcal.co/i/J1NBSeBf";
+      anchor.href = CALENDAR_A_HREF;
       container.appendChild(anchor);
 
       // Manually trigger zcal's init if it exposes one

@@ -1,9 +1,17 @@
-import { GOLD } from "@/app/data";
+import {
+  CITY,
+  DIMCE_YEARS_EXPERIENCE,
+  GOLD,
+  SHOP_DESCRIPTION_1,
+  SHOP_DESCRIPTION_2,
+  SHOP_DESCRIPTION_3,
+  SHOP_ESTABLISHED_YEAR,
+} from "@/data";
 import { useBookingStore } from "@/stores/booking-store";
 import { ChevronDown } from "lucide-react";
 
 const STATS = [
-  { n: "8+", label: "Years" },
+  { n: `${DIMCE_YEARS_EXPERIENCE}+`, label: "Years" },
   { n: "1", label: "Barbers" },
   { n: "Many", label: "Clients" },
 ];
@@ -87,7 +95,7 @@ export function Hero() {
             padding: "0.4rem 1.25rem",
           }}
         >
-          Established 2025 · Melbourne
+          Established {SHOP_ESTABLISHED_YEAR} · {CITY}
         </div>
 
         {/* Headline */}
@@ -121,10 +129,10 @@ export function Hero() {
             fontWeight: 300,
           }}
         >
-          ✂️ Fresh Cuts, Sharp Styles ✂️ <br />
-          💈 Precision fades & classic trims 💈
+          {SHOP_DESCRIPTION_1} <br />
+          {SHOP_DESCRIPTION_2}
           <br />
-          Walk-ins & appointments welcome
+          {SHOP_DESCRIPTION_3}
         </p>
 
         {/* Buttons */}

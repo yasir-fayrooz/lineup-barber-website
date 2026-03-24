@@ -1,4 +1,4 @@
-import { SHOP_NAME } from "@/app/data";
+import { SHOP_NAME } from "@/data";
 import { Scissors } from "lucide-react";
 
 const GOLD = "#D4AF37";

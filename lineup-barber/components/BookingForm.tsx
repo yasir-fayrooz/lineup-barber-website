@@ -1,7 +1,7 @@
 "use client";
 
 import { useBookingStore } from "@/stores/booking-store";
-import { GOLD } from "@/app/data";
+import { GOLD } from "@/data";
 
 export function BookingForm() {
   const { toggleModal } = useBookingStore();

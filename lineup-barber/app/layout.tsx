@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Mono } from "next/font/google";
 import "./globals.css";
-import { SHOP_NAME } from "./data";
+import { SHOP_NAME } from "../data";
 
 const dmMono = DM_Mono({
   subsets: ["latin"],

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Scissors, Menu, X } from "lucide-react";
-import { SHOP_NAME } from "@/app/data";
+import { SHOP_NAME } from "@/data";
 import { useBookingStore } from "@/stores/booking-store";
 
 const GOLD = "#D4AF37";

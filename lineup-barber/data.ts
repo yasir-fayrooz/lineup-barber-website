@@ -1,6 +1,50 @@
-import type { Service, Testimonial, Barber } from "../types";
+import { Clock, MapPin, Phone } from "lucide-react";
+import type { Service, Testimonial, Barber } from "./app/types";
+
+export const CALENDAR_SCRIPT_SRC = "https://static.zcal.co/embed/v1/embed.js";
+export const CALENDAR_A_HREF = "https://zcal.co/i/J1NBSeBf";
 
 export const SHOP_NAME = "Lineup Barbershop";
+export const SHOP_ESTABLISHED_YEAR = 2025;
+export const INSTAGRAM_URL = "https://www.instagram.com/line_upbarber";
+export const SHOP_DESCRIPTION_1 = "✂️ Fresh Cuts, Sharp Styles ✂️";
+export const SHOP_DESCRIPTION_2 = "💈 Precision fades & classic trims 💈";
+export const SHOP_DESCRIPTION_3 = "Walk-ins & appointments welcome";
+
+export const DIMCE_YEARS_EXPERIENCE = 8;
+export const BARBERS: Barber[] = [
+  {
+    name: "Dimce Gjorgievski",
+    title: "Master Barber & Founder",
+    specialty: "Precision fades & classic trims",
+    years: `${DIMCE_YEARS_EXPERIENCE} years`,
+  },
+];
+
+export const CITY = "Melbourne";
+export const CONTACT_INFO = [
+  {
+    icon: MapPin,
+    label: "Address",
+    value: "17 N Haven Dr, Epping VIC 3076",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "(+61) 410 436 447",
+  },
+  {
+    icon: Clock,
+    label: "Hours",
+    value: `Mon: 12:30pm-7:30pm
+  Tue: 3:30pm-8:00pm
+  Wed: 12:30pm-7:00pm
+  Thu: 12:30pm-7:30pm
+  Fri: 11:30am-7:30pm
+  Sat: 11:00am-6:30pm
+  Sun: Closed`,
+  },
+];
 
 export const SERVICES: Service[] = [
   {
@@ -62,15 +106,6 @@ export const TESTIMONIALS: Testimonial[] = [
     rating: 5,
     text: "Best barber in Epping. Listens to you and also give recommendations. Never in hurry. Does everything with detailing. Good peaceful environment",
     since: "",
-  },
-];
-
-export const BARBERS: Barber[] = [
-  {
-    name: "Dimce Gjorgievski",
-    title: "Master Barber & Founder",
-    specialty: "Precision fades & classic trims",
-    years: "8 years",
   },
 ];
 

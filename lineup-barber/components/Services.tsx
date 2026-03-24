@@ -1,5 +1,5 @@
 import { Clock } from "lucide-react";
-import { SERVICES } from "@/app/data";
+import { SERVICES } from "@/data";
 import { Service } from "@/app/types";
 
 export function Services() {

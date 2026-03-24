@@ -1,32 +1,7 @@
 "use client";
-import {
-  MapPin,
-  Phone,
-  Clock,
-  Instagram,
-  Facebook,
-  Twitter,
-} from "lucide-react";
 import { BookingForm } from "@/components/BookingForm";
-
-const CONTACT_INFO = [
-  {
-    icon: MapPin,
-    label: "Address",
-    value: "17 N Haven Dr, Epping VIC 3076",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "(+61) 410 436 447",
-  },
-  {
-    icon: Clock,
-    label: "Hours",
-    value:
-      "Mon: 12:30pm-7:30pm\nTue: 3:30pm-8:00pm\nWed: 12:30pm-7:00pm\nThu: 12:30pm-7:30pm\nFri: 11:30am-7:30pm\nSat: 11:00am-6:30pm\nSun: Closed",
-  },
-];
+import { CONTACT_INFO, INSTAGRAM_URL } from "@/data";
+import { Instagram } from "lucide-react";
 
 const SOCIALS = [Instagram];
 
@@ -87,7 +62,7 @@ export function Contact() {
               {SOCIALS.map((Icon, i) => (
                 <div className="flex items-center gap-2" key={i}>
                   <a
-                    href="https://www.instagram.com/line_upbarber"
+                    href={INSTAGRAM_URL}
                     target="_blank"
                     className="w-10 h-10 border border-zinc-700 hover:border-gold flex items-center justify-center bg-transparent text-zinc-500 hover:text-gold transition-all duration-300 cursor-pointer"
                   >
