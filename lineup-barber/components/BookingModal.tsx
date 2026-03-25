@@ -16,41 +16,31 @@ function ZcalWidget() {
 
   useEffect(() => {
     if (!containerRef.current) return;
-
     const container = containerRef.current;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const win = window as any;
 
-    // Remove any existing zcal script so it re-executes fresh
+    // 1. Inject the anchor FIRST so zcal finds it when the script executes
+    const anchor = document.createElement("a");
+    anchor.href = CALENDAR_A_HREF;
+    container.appendChild(anchor);
+
+    // 2. Remove stale script/global
     const existing = document.querySelector(
       `script[src="${CALENDAR_SCRIPT_SRC}"]`,
     );
     if (existing) existing.remove();
-
-    // Also clear any zcal global so it re-initialises
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const win = window as any;
     if (win.zcal) delete win.zcal;
 
+    // 3. Now load the script — it will scan and find the anchor
     const script = document.createElement("script");
     script.src = CALENDAR_SCRIPT_SRC;
     script.async = true;
-
-    // Only after script is fully loaded do we inject the anchor
-    // so zcal's DOM scan runs against a ready element
-    script.onload = () => {
-      const anchor = document.createElement("a");
-      anchor.href = CALENDAR_A_HREF;
-      container.appendChild(anchor);
-
-      // Manually trigger zcal's init if it exposes one
-      if (win.zcal?.init) win.zcal.init();
-    };
-
     document.body.appendChild(script);
 
     return () => {
       script.remove();
       if (win.zcal) delete win.zcal;
-      // Clear the container so next mount starts clean
       container.innerHTML = "";
     };
   }, []);
@@ -75,7 +65,7 @@ export function BookingModal() {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="overflow-y-auto max-h-[90vh]">
+        <div className="overflow-y-auto max-h-[90px]">
           {isBooking && <ZcalWidget />}
         </div>
       </DialogContent>

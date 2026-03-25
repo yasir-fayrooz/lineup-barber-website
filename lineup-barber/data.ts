@@ -2,7 +2,7 @@ import { Clock, MapPin, Phone } from "lucide-react";
 import type { Service, Testimonial, Barber } from "./app/types";
 
 export const CALENDAR_SCRIPT_SRC = "https://static.zcal.co/embed/v1/embed.js";
-export const CALENDAR_A_HREF = "https://zcal.co/i/J1NBSeBf";
+export const CALENDAR_A_HREF = "https://zcal.co/i/YdLw5QPv";
 
 export const SHOP_NAME = "Lineup Barbershop";
 export const SHOP_ESTABLISHED_YEAR = 2025;
@@ -107,7 +107,7 @@ export const SERVICES: Service[] = [
   {
     name: "Hair Cut + Hot Towel Massage",
     price: "$60",
-    duration: "60 min",
+    duration: "80 min",
     description:
       "Hair Cut + Heat and moisture to deeply condition, hydrate, and soften hair while relaxing the scalp",
   },
