@@ -48,13 +48,38 @@ export const CONTACT_INFO = [
 
 export const SERVICES: Service[] = [
   {
-    name: "Basic Cut",
+    name: "Boys Fade",
+    price: "$30",
+    duration: "35 min",
+    description: "Fade for kids.",
+  },
+  {
+    name: "Beard Trim Line Up",
+    price: "$25",
+    duration: "15 min",
+    description: "Shape, line, and condition your beard to its finest form.",
+  },
+  {
+    name: "Adult Hair Cut",
     price: "$30",
     duration: "35 min",
     description: "Precision scissor or clipper cut, styled to perfection.",
   },
   {
-    name: "Skin Fade",
+    name: "Skin/Burst Fade & Beard",
+    price: "$50",
+    duration: "60 min",
+    description:
+      "Modern, high-contrast haircut technique where the hair on the sides and back tapers gradually from any length down to the bare skin + beard trim",
+  },
+  {
+    name: "Boys Hair Cut",
+    price: "$25",
+    duration: "30 min",
+    description: "Regular Hair cut for kids",
+  },
+  {
+    name: "Skin/Burst Fade",
     price: "$40",
     duration: "45 min",
     description:
@@ -68,23 +93,30 @@ export const SERVICES: Service[] = [
       "Shortens hair on the sides and back—specifically at the neckline and temples—while leaving longer hair on top. It offers a cleaner, subtler, and more blended look than a standard fade",
   },
   {
-    name: "Beard Trim",
+    name: "Hair Cut & Beard Trim",
+    price: "$45",
+    duration: "60 min",
+    description: "Regular hair cut & Beard trim service",
+  },
+  {
+    name: "Bald Cut & Shave",
+    price: "$40",
+    duration: "45 min",
+    description: "1 level hair cut & shave",
+  },
+  {
+    name: "Hair Cut + Hot Towel Massage",
+    price: "$60",
+    duration: "60 min",
+    description:
+      "Hair Cut + Heat and moisture to deeply condition, hydrate, and soften hair while relaxing the scalp",
+  },
+  {
+    name: "Washing Hair",
     price: "$10",
     duration: "15 min",
-    description: "Shape, line, and condition your beard to its finest form.",
-  },
-  {
-    name: "Hot Towel Massage",
-    price: "$10",
-    duration: "20 min",
     description:
       "Heat and moisture to deeply condition, hydrate, and soften hair while relaxing the scalp",
-  },
-  {
-    name: "Boys Hair Cut",
-    price: "$25",
-    duration: "35 min",
-    description: "Hair cut for kids",
   },
 ];
 

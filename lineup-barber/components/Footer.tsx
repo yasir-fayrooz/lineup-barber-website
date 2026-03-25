@@ -48,7 +48,7 @@ export function Footer() {
           color: "#bdbdc5",
         }}
       >
-        Melbourne, Australia
+        Designed by Yasir Fayrooz
       </p>
     </footer>
   );
