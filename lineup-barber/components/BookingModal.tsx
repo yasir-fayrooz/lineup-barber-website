@@ -65,7 +65,7 @@ export function BookingModal() {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="overflow-y-auto max-h-[90px]">
+        <div className="overflow-y-auto max-h-[70vh]">
           {isBooking && <ZcalWidget />}
         </div>
       </DialogContent>
