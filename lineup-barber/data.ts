@@ -1,8 +1,8 @@
-import { Clock, MapPin, Phone } from "lucide-react";
-import type { Service, Testimonial, Barber } from "./app/types";
+import type { Testimonial, Barber } from "./app/types";
 
 export const CALENDAR_SCRIPT_SRC = "https://static.zcal.co/embed/v1/embed.js";
-export const CALENDAR_A_HREF = "https://zcal.co/i/YdLw5QPv";
+export const CALENDER_URL_ID = "YdLw5QPv";
+export const CALENDAR_A_HREF = `https://zcal.co/i/${CALENDER_URL_ID}`;
 
 export const SHOP_NAME = "Lineup Barbershop";
 export const SHOP_ESTABLISHED_YEAR = 2025;
@@ -22,103 +22,6 @@ export const BARBERS: Barber[] = [
 ];
 
 export const CITY = "Melbourne";
-export const CONTACT_INFO = [
-  {
-    icon: MapPin,
-    label: "Address",
-    value: "17 N Haven Dr, Epping VIC 3076",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "(+61) 410 436 447",
-  },
-  {
-    icon: Clock,
-    label: "Hours",
-    value: `Mon: 12:30pm-7:30pm
-  Tue: 3:30pm-8:00pm
-  Wed: 12:30pm-7:00pm
-  Thu: 12:30pm-7:30pm
-  Fri: 11:30am-7:30pm
-  Sat: 11:00am-6:30pm
-  Sun: Closed`,
-  },
-];
-
-export const SERVICES: Service[] = [
-  {
-    name: "Boys Fade",
-    price: "$30",
-    duration: "35 min",
-    description: "Fade for kids.",
-  },
-  {
-    name: "Beard Trim Line Up",
-    price: "$25",
-    duration: "15 min",
-    description: "Shape, line, and condition your beard to its finest form.",
-  },
-  {
-    name: "Adult Hair Cut",
-    price: "$30",
-    duration: "35 min",
-    description: "Precision scissor or clipper cut, styled to perfection.",
-  },
-  {
-    name: "Skin/Burst Fade & Beard",
-    price: "$50",
-    duration: "60 min",
-    description:
-      "Modern, high-contrast haircut technique where the hair on the sides and back tapers gradually from any length down to the bare skin + beard trim",
-  },
-  {
-    name: "Boys Hair Cut",
-    price: "$25",
-    duration: "30 min",
-    description: "Regular Hair cut for kids",
-  },
-  {
-    name: "Skin/Burst Fade",
-    price: "$40",
-    duration: "45 min",
-    description:
-      "Modern, high-contrast haircut technique where the hair on the sides and back tapers gradually from any length down to the bare skin",
-  },
-  {
-    name: "Taper Fade",
-    price: "$35",
-    duration: "45 min",
-    description:
-      "Shortens hair on the sides and back—specifically at the neckline and temples—while leaving longer hair on top. It offers a cleaner, subtler, and more blended look than a standard fade",
-  },
-  {
-    name: "Hair Cut & Beard Trim",
-    price: "$45",
-    duration: "60 min",
-    description: "Regular hair cut & Beard trim service",
-  },
-  {
-    name: "Bald Cut & Shave",
-    price: "$40",
-    duration: "45 min",
-    description: "1 level hair cut & shave",
-  },
-  {
-    name: "Hair Cut + Hot Towel Massage",
-    price: "$60",
-    duration: "80 min",
-    description:
-      "Hair Cut + Heat and moisture to deeply condition, hydrate, and soften hair while relaxing the scalp",
-  },
-  {
-    name: "Washing Hair",
-    price: "$10",
-    duration: "15 min",
-    description:
-      "Heat and moisture to deeply condition, hydrate, and soften hair while relaxing the scalp",
-  },
-];
 
 export const TESTIMONIALS: Testimonial[] = [
   {

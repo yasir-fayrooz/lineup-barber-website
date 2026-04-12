@@ -18,6 +18,8 @@
 mono_crash.*
 
 # Build results
+.open-next/
+.wrangler/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/

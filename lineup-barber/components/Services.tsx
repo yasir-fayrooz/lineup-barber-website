@@ -1,17 +1,27 @@
-import { Clock, ChevronDown } from "lucide-react";
-import { useState, useRef } from "react";
-import { SERVICES } from "@/data";
-import { Service } from "@/app/types";
+"use client";
 
-const OVERFLOW_THRESHOLD = 6; // show overflow after this many services
-const MAX_HEIGHT = 520; // px — roughly 2 rows of cards
+import { useState, useRef, useEffect } from "react";
+import { ChevronDown, Loader2Icon } from "lucide-react";
+import { useBookingStore } from "@/stores/booking-store";
+
+const MAX_HEIGHT = 600;
 
 export function Services() {
   const [expanded, setExpanded] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
-  const [needsOverflow, setNeedsOverflow] = useState(
-    SERVICES.length > OVERFLOW_THRESHOLD,
-  );
+  const { serviceSections } = useBookingStore();
+  const [needsOverflow, setNeedsOverflow] = useState(false);
+
+  // Count total individual services to decide if we need overflow
+  useEffect(() => {
+    if (!serviceSections) return;
+    const total = serviceSections.reduce(
+      (acc, s) => acc + s.barberServices.length,
+      0,
+    );
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setNeedsOverflow(total > 6);
+  }, [serviceSections]);
 
   return (
     <div className="w-full bg-zinc-900">
@@ -43,48 +53,60 @@ export function Services() {
           </div>
         </div>
 
-        {/* Grid wrapper with overflow */}
+        {/* Sections */}
         <div className="relative">
+          {!serviceSections && (
+            <Loader2Icon className="flex w-full justify-center animate-spin" />
+          )}
           <div
             ref={gridRef}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-700 overflow-hidden transition-all duration-700 ease-in-out"
+            className="flex flex-col gap-10 overflow-hidden transition-[max-height] duration-700 ease-in-out"
             style={{
               maxHeight:
                 needsOverflow && !expanded ? `${MAX_HEIGHT}px` : "none",
             }}
           >
-            {SERVICES.map((s: Service) => (
-              <div
-                key={s.name}
-                className="bg-zinc-900 hover:bg-zinc-800 transition-colors duration-300 p-8 cursor-default"
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-display text-2xl text-white font-normal">
-                    {s.name}
-                  </h3>
-                  <span className="font-display text-2xl text-gold font-normal shrink-0 ml-4">
-                    {s.price}
-                  </span>
+            {serviceSections?.map((section) => (
+              <div key={section.serviceName}>
+                {/* Section label */}
+                <div className="flex items-center gap-4 mb-4">
+                  <p className="text-gold font-mono text-xs tracking-[0.25em] uppercase shrink-0">
+                    {section.serviceName}
+                  </p>
+                  <div className="h-px flex-1 bg-zinc-800" />
                 </div>
-                <p className="text-zinc-500 text-xs leading-relaxed mb-5 font-mono">
-                  {s.description}
-                </p>
-                <div className="flex items-center gap-2 text-zinc-600">
-                  <Clock size={13} />
-                  <span className="font-mono text-xs tracking-widest">
-                    {s.duration}
-                  </span>
+
+                {/* Service cards grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-700">
+                  {section.barberServices.map((svc) => (
+                    <div
+                      key={svc.service}
+                      className="bg-zinc-900 hover:bg-zinc-800 transition-colors duration-300 p-7 cursor-default group"
+                    >
+                      <div className="flex justify-between items-start mb-3">
+                        <h3 className="font-display text-2xl text-white font-normal group-hover:text-gold transition-colors duration-300">
+                          {svc.service}
+                        </h3>
+                        <span className="font-display text-2xl text-gold font-normal shrink-0 ml-4">
+                          ${svc.price}
+                        </span>
+                      </div>
+                      <p className="text-zinc-500 text-xs leading-relaxed font-mono">
+                        {svc.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Fade + expand button */}
+          {/* Fade + expand */}
           {needsOverflow && !expanded && (
-            <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-transparent flex items-end justify-center pb-6 pointer-events-none">
+            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-zinc-900 via-zinc-900/70 to-transparent flex items-end justify-center pb-6 pointer-events-none">
               <button
                 onClick={() => setExpanded(true)}
-                className="pointer-events-auto flex items-center gap-2 border border-zinc-700 hover:border-gold text-zinc-400 hover:text-gold font-mono text-xs tracking-[0.2em] uppercase px-5 py-3 transition-colors duration-300 bg-zinc-900"
+                className="pointer-events-auto flex items-center gap-2 border border-zinc-700 hover:border-gold text-zinc-400 hover:text-gold font-mono text-xs tracking-[0.2em] uppercase px-6 py-3 transition-all duration-300 bg-zinc-900 cursor-pointer"
               >
                 View All Services
                 <ChevronDown size={13} />
@@ -93,24 +115,23 @@ export function Services() {
           )}
         </div>
 
-        {/* Collapse button */}
+        {/* Collapse */}
         {needsOverflow && expanded && (
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center mt-8">
             <button
               onClick={() => {
                 setExpanded(false);
-                gridRef.current?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                });
+                setTimeout(() => {
+                  gridRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }, 50);
               }}
-              className="flex items-center gap-2 border border-zinc-700 hover:border-gold text-zinc-400 hover:text-gold font-mono text-xs tracking-[0.2em] uppercase px-5 py-3 transition-colors duration-300"
+              className="flex items-center gap-2 border border-zinc-700 hover:border-gold text-zinc-400 hover:text-gold font-mono text-xs tracking-[0.2em] uppercase px-6 py-3 transition-all duration-300 cursor-pointer"
             >
               Show Less
-              <ChevronDown
-                size={13}
-                className="rotate-180 transition-transform"
-              />
+              <ChevronDown size={13} className="rotate-180" />
             </button>
           </div>
         )}

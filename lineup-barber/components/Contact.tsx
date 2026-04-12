@@ -1,11 +1,14 @@
 "use client";
 import { BookingForm } from "@/components/BookingForm";
-import { CONTACT_INFO, INSTAGRAM_URL } from "@/data";
-import { Instagram } from "lucide-react";
+import { INSTAGRAM_URL } from "@/data";
+import { useBookingStore } from "@/stores/booking-store";
+import { Clock, Instagram, Loader2Icon, MapPin, Phone } from "lucide-react";
 
 const SOCIALS = [Instagram];
 
 export function Contact() {
+  const { workHours, phoneNumber, location } = useBookingStore();
+
   return (
     <div className="w-full bg-zinc-900">
       <div id="contact" className="max-w-7xl mx-auto px-6 py-28">
@@ -38,24 +41,72 @@ export function Contact() {
             </div>
 
             {/* Contact items */}
-            <div className="flex flex-col gap-6">
-              {CONTACT_INFO.map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex gap-4">
+            {!workHours || !phoneNumber || !location ? (
+              <Loader2Icon className="flex justify-center animate-spin" />
+            ) : (
+              <div className="flex flex-col gap-6">
+                {/* LOCATION */}
+                <div className="flex gap-4">
                   <div className="w-10 h-10 border border-gold/30 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon size={16} className="text-gold" />
+                    <MapPin size={16} className="text-gold" />
                   </div>
                   <div>
                     <p className="font-mono text-xs text-zinc-600 tracking-widest uppercase mb-1">
-                      {label}
+                      Address
                     </p>
                     {/* whitespace-pre-line preserves the \n line breaks in Hours */}
                     <span className="font-mono text-xs text-zinc-400 whitespace-pre-line">
-                      {value}
+                      {location}
                     </span>
                   </div>
                 </div>
-              ))}
-            </div>
+                {/* PHONE */}
+                <div className="flex gap-4">
+                  <div className="w-10 h-10 border border-gold/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <Phone size={16} className="text-gold" />
+                  </div>
+                  <div>
+                    <p className="font-mono text-xs text-zinc-600 tracking-widest uppercase mb-1">
+                      Phone
+                    </p>
+                    {/* whitespace-pre-line preserves the \n line breaks in Hours */}
+                    <a
+                      href={`tel:${phoneNumber}`}
+                      className="font-mono text-xs text-zinc-400 whitespace-pre-line"
+                    >
+                      {phoneNumber}
+                    </a>
+                  </div>
+                </div>
+                {/* WORKING HOURS */}
+                <div className="flex gap-4">
+                  <div className="w-10 h-10 border border-gold/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <Clock size={16} className="text-gold" />
+                  </div>
+                  <div>
+                    <p className="font-mono text-xs text-zinc-600 tracking-widest uppercase mb-1">
+                      Working Hours
+                    </p>
+                    {/* whitespace-pre-line preserves the \n line breaks in Hours */}
+                    <span className="font-mono text-xs text-zinc-400 whitespace-pre-line">
+                      {"Mon: " + workHours?.mo}
+                      <br />
+                      {"Tue: " + workHours?.tu}
+                      <br />
+                      {"Wed: " + workHours?.we}
+                      <br />
+                      {"Thu: " + workHours?.th}
+                      <br />
+                      {"Fri: " + workHours?.fr}
+                      <br />
+                      {"Sat: " + workHours?.sa}
+                      <br />
+                      {"Sun: " + workHours?.su}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Socials */}
             <div className="flex gap-3 mt-10">
