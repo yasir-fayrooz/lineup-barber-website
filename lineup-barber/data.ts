@@ -14,7 +14,7 @@ export const SHOP_DESCRIPTION_3 = "Walk-ins & appointments welcome";
 export const DIMCE_YEARS_EXPERIENCE = 8;
 export const BARBERS: Barber[] = [
   {
-    name: "Dimce Gjorgievski",
+    name: "Dimce (Jimmy) Gjorgievski",
     title: "Master Barber & Founder",
     specialty: "Precision fades & classic trims",
     years: `${DIMCE_YEARS_EXPERIENCE} years`,
